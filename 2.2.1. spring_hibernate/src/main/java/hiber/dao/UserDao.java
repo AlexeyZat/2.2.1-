@@ -12,6 +12,4 @@ public interface UserDao {
     List<User> listUsers();
 
 
-
-
 }
