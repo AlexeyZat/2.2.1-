@@ -24,22 +24,15 @@ public class User {
     @JoinColumn(name = "car", referencedColumnName = "id")
     private Car car;
 
-    public Car getCar() {
-        return car;
-    }
-
-    public void setCar(Car car) {
-        this.car = car;
-    }
 
     public User() {
     }
 
-    public User(String email, String lastName, String firstName, Car car) {
-        this.car = car;
-        this.email = email;
-        this.lastName = lastName;
+    public User(String firstName, String lastName, String email, Car car) {
         this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.car = car;
     }
 
     public Long getId() {
@@ -70,20 +63,33 @@ public class User {
         return email;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
     @Override
     public boolean equals(Object o) {
+        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(email, user.email) && Objects.equals(car, user.car);
+        return Objects.equals(id, user.id) &&
+                Objects.equals(firstName, user.firstName) &&
+                Objects.equals(lastName, user.lastName) &&
+                Objects.equals(email, user.email) &&
+                Objects.equals(car, user.car);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(id, firstName, lastName, email, car);
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     @Override
